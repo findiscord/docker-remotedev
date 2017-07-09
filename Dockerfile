@@ -19,7 +19,6 @@ RUN apt-get update -qq && \
         ca-certificates \
         emacs-nox \
         git \
-        gosu \
         pwgen \
         openssh-client \
         sudo \
