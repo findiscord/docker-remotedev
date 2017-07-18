@@ -38,8 +38,8 @@ if [ "$(id -u)" = '0' ]; then
             echo "Generated login password for ${LOGIN_NAME}: $(tput bold)${LOGIN_PASSWORD}$(tput sgr0) (set -e LOGIN_PASSWORD to override)"
         fi
 
-        useradd -u "${LOGIN_UID}" -m -s /bin/bash "${LOGIN_NAME}"
-        usermod -a -G sudo "${LOGIN_NAME}"
+        groupadd -g "${LOGIN_UID}" "${LOGIN_NAME}"
+        useradd -u "${LOGIN_UID}" -g "${LOGIN_UID}" -G sudo -m -s /bin/bash "${LOGIN_NAME}"
         echo "${LOGIN_NAME}:${LOGIN_PASSWORD}" | chpasswd
         HOME="/home/${LOGIN_NAME}"
     fi
@@ -50,6 +50,7 @@ if [ "$(id -u)" = '0' ]; then
         cp '/tmp/.gotty.default' "${HOME}/.gotty"
         chown "${LOGIN_NAME}:${LOGIN_UID}" "${HOME}/.gotty"
     fi
+    cd $HOME
 
     # set root password
     if [ -z "${ROOT_PASSWORD}" ]; then
