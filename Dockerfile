@@ -16,10 +16,13 @@ ENV LANG=en_US.utf8
 
 RUN apt-get update -qq && \
     apt-get install -qq \
+        acl \
+        bash-completion \
         ca-certificates \
-        emacs-nox \
         git \
+        gpg \
         pwgen \
+        nano \
         openssh-client \
         sudo \
         tmux \
