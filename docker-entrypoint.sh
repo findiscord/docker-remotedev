@@ -38,10 +38,12 @@ if [ "$(id -u)" = '0' ]; then
             echo "Generated login password for ${LOGIN_NAME}: $(tput bold)${LOGIN_PASSWORD}$(tput sgr0) (set -e LOGIN_PASSWORD to override)"
         fi
 
-        groupadd -g "${LOGIN_UID}" "${LOGIN_NAME}"
-        useradd -u "${LOGIN_UID}" -g "${LOGIN_UID}" -G sudo -m -s /bin/bash "${LOGIN_NAME}"
-        echo "${LOGIN_NAME}:${LOGIN_PASSWORD}" | chpasswd
-        HOME="/home/${LOGIN_NAME}"
+        if [ -z "$(getent passwd ${LOGIN_NAME})" ]; then
+            groupadd -g "${LOGIN_UID}" "${LOGIN_NAME}"
+            useradd -u "${LOGIN_UID}" -g "${LOGIN_UID}" -G sudo -m -s /bin/bash "${LOGIN_NAME}"
+            echo "${LOGIN_NAME}:${LOGIN_PASSWORD}" | chpasswd
+            HOME="/home/${LOGIN_NAME}"
+        fi
     fi
 
     # link userdata to home and copy default GoTTY config
@@ -58,6 +60,14 @@ if [ "$(id -u)" = '0' ]; then
         echo "Generated root password: $(tput bold)${ROOT_PASSWORD}$(tput sgr0) (set -e ROOT_PASSWORD to override)"
     fi
     echo "root:${ROOT_PASSWORD}" | chpasswd
+
+    apt-get update
+
+    # install packages
+    if [ "${INSTALL_PACKAGES}" ] && [ -z '/.packages-installed' ]; then
+        apt-get install -y "${INSTALL_PACKAGES}"
+        touch '/.packages-installed'
+    fi
 
     echo
     echo "remotedev init process done. Ready for start up."
