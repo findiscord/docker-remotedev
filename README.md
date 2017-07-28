@@ -24,8 +24,12 @@ docker run -v /some/host/directory:/userdata -p 8080:8080 richardcarls/remotedev
 By default, gotty runs `/bin/login` and reads default options from a provided `.gotty` configuration file in /userdata. The default config allows browser client write (`--permit-write`) and reconnect (`--reconnect`, `--reconnect-timeout=10`). You may override these and supply other gotty options via docker command, environment variables, or a custom `.gotty` config in your mounted /userdata directory.
 
 ### Included packages
-- `emacs-nox`
+- `nano`
 - `git`
+- `gpg`
 - `openssh-client`
 - `tmux`
 - `wget`
+
+### Install additional packages on start
+You can specify additional packages to install at container start by setting `-e INSTALL PACKAGES`.
