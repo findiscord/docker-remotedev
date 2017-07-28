@@ -32,4 +32,4 @@ By default, gotty runs `/bin/login` and reads default options from a provided `.
 - `wget`
 
 ### Install additional packages on start
-You can specify additional packages to install at container start by setting `-e INSTALL PACKAGES`.
+You can specify additional packages to install at container start by setting `-e INSTALL_PACKAGES`.
