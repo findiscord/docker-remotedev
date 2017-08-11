@@ -31,5 +31,16 @@ By default, gotty runs `/bin/login` and reads default options from a provided `.
 - `tmux`
 - `wget`
 
-### Install additional packages on start
+### Install additional packages on container start
 You can specify additional packages to install at container start by setting `-e INSTALL_PACKAGES`.
+
+```bash
+docker run -v /some/host/directory:/userdata -e INSTALL_PACKAGES="build-essentials emacs-nox nodejs" -p 8080:8080 richardcarls/remotedev
+```
+
+### Run a startup script on ontainer start
+Provide the path to a startup script to run with `-e STARTUP_EXEC` (relative to $HOME).
+
+```bash
+docker run -v /some/host/directory:/userdata -e STARTUP_EXEC="remotedev-startup-polymer.sh" -p 8080:8080 richardcarls/remotedev
+```

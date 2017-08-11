@@ -70,6 +70,13 @@ if [ "$(id -u)" = '0' ]; then
         touch '/.packages-installed'
     fi
 
+    # run start-up script
+    echo "startup script: ${STARTUP_EXEC}"
+    if [ -f "${STARTUP_EXEC}" ] && [ ! -f '/.startup-done' ]; then
+        (source "${STARTUP_EXEC}")
+        touch '/.startup-done'
+    fi
+
     echo
     echo "remotedev init process done. Ready for start up."
     echo
