@@ -66,7 +66,7 @@ if [ "$(id -u)" = '0' ]; then
     # install packages
     echo "packages: ${INSTALL_PACKAGES}"
     if [ "${INSTALL_PACKAGES}" ] && [ ! -f '/.packages-installed' ]; then
-        apt-get install -y "${INSTALL_PACKAGES}"
+        echo "${INSTALL_PACKAGES}" | xargs apt-get install -qy
         touch '/.packages-installed'
     fi
 
