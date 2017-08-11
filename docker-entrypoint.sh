@@ -47,7 +47,7 @@ if [ "$(id -u)" = '0' ]; then
     fi
 
     # link userdata to home and copy default GoTTY config
-    if [ -n "$(ls -A /userdata)" ]; then rm -rf "${HOME}" && ln -s /userdata "${HOME}"; fi
+    if [ "$(ls -A /userdata)" ]; then rm -rf "${HOME}" && ln -s /userdata "${HOME}"; fi
     if [ ! -f '/userdata/.gotty' ]; then
         cp '/tmp/.gotty.default' "${HOME}/.gotty"
         chown "${LOGIN_NAME}:${LOGIN_UID}" "${HOME}/.gotty"
@@ -64,7 +64,8 @@ if [ "$(id -u)" = '0' ]; then
     apt-get update
 
     # install packages
-    if [ "${INSTALL_PACKAGES}" ] && [ -z '/.packages-installed' ]; then
+    echo "packages: ${INSTALL_PACKAGES}"
+    if [ "${INSTALL_PACKAGES}" ] && [ ! -f '/.packages-installed' ]; then
         apt-get install -y "${INSTALL_PACKAGES}"
         touch '/.packages-installed'
     fi
