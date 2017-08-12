@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-EXPOSE 8080
+EXPOSE 8080 3000
 
 ENV gotty_version=v1.0.0
 
