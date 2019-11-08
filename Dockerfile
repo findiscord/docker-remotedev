@@ -2,7 +2,7 @@ FROM debian:stretch
 
 EXPOSE 8080 3000
 
-ENV gotty_version=v1.0.0
+ENV gotty_version=v1.0.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TERM=xterm-256color
