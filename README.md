@@ -47,6 +47,9 @@ docker run -v /some/host/directory:/userdata -e STARTUP_EXEC="your-startup-scrip
 
 ## Change History
 
+### 2.2.2
+- Fixed entrypoint point line-endings
+
 ### 2.2.1
 - Swtich to using debian:latest
 
