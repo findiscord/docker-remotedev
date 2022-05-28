@@ -2,7 +2,7 @@
 
 This Docker image is a full Debian Linux environment running [GoTTY](https://github.com/yudai/gotty), which allows you to access a TTY inside the container from your web browser.
 
-# Usage
+## Usage
 ```bash
 docker run -p 8080:8080 richardcarls/remotedev
 ```
@@ -35,12 +35,31 @@ By default, gotty runs `/bin/login` and reads default options from a provided `.
 You can specify additional packages to install at container start by setting `-e INSTALL_PACKAGES`.
 
 ```bash
-docker run -v /some/host/directory:/userdata -e INSTALL_PACKAGES="build-essentials emacs-nox nodejs" -p 8080:8080 richardcarls/remotedev
+docker run -v /some/host/directory:/userdata -e INSTALL_PACKAGES="emacs-nox nodejs" -p 8080:8080 richardcarls/remotedev
 ```
 
 ### Run a startup script on ontainer start
 Provide the path to a startup script to run with `-e STARTUP_EXEC` (relative to $HOME).
 
 ```bash
-docker run -v /some/host/directory:/userdata -e STARTUP_EXEC="remotedev-startup-polymer.sh" -p 8080:8080 richardcarls/remotedev
+docker run -v /some/host/directory:/userdata -e STARTUP_EXEC="your-startup-script.sh" -p 8080:8080 richardcarls/remotedev
 ```
+
+## Change History
+
+### 2.2.1
+- Swtich to using debian:latest
+
+### 2.2.0
+- Bump gotty to latest version 1.0.1
+- Expose a second port (useful to run a dev server)
+
+### 2.1.0
+- Added startup script hok
+
+### 2.0.0
+- Added package install hook
+- Some default packages
+
+### 1.0.0
+Initial release

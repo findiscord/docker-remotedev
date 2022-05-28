@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:latest
 
 EXPOSE 8080 3000
 
