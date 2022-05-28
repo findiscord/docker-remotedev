@@ -24,10 +24,16 @@ docker run -v /some/host/directory:/userdata -p 8080:8080 richardcarls/remotedev
 By default, gotty runs `/bin/login` and reads default options from a provided `.gotty` configuration file in /userdata. The default config allows browser client write (`--permit-write`) and reconnect (`--reconnect`, `--reconnect-timeout=10`). You may override these and supply other gotty options via docker command, environment variables, or a custom `.gotty` config in your mounted /userdata directory.
 
 ### Included packages
-- `nano`
+The below packages are included on top of the base debian image:
+
+- `acl`
+- `bash-completion`
+- `curl`
 - `git`
 - `gpg`
-- `openssh-client`
+- `pwgen`
+- `nano`
+- `sudo`
 - `tmux`
 - `wget`
 
@@ -46,6 +52,9 @@ docker run -v /some/host/directory:/userdata -e STARTUP_EXEC="your-startup-scrip
 ```
 
 ## Change History
+
+### 2.2.3
+- Remove openssh, add curl to image
 
 ### 2.2.2
 - Fixed entrypoint point line-endings

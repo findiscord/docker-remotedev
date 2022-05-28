@@ -17,14 +17,12 @@ ENV LANG=en_US.utf8
 RUN apt-get update -qq && \
     apt-get install -qq \
         acl \
-        apt-transport-https \
         bash-completion \
-        ca-certificates \
+        curl \
         git \
         gpg \
         pwgen \
         nano \
-        openssh-client \
         sudo \
         tmux \
         wget && \
