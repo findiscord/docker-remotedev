@@ -1,0 +1,14 @@
+{
+    "name": "Heroku VPS 24/7 #RixEtte",
+    "description": "Deploy noVNC to Heroku.",
+    "keywords": [
+        "web",
+        "Docker",
+        "gotty"
+    ],
+    "env": {},
+    "website": "",
+    "repository": "https://github.com/findiscord/docker-remotedev.git",
+    "logo": "https://raw.githubusercontent.com/RixEtte/vps-heroku/main/58480873cef1014c0b5e48ea.png",
+    "stack": "container"
+}
